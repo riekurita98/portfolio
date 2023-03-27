@@ -360,6 +360,7 @@
         $.ajax({
         url : "/assets/img/portfolio/" + section,
         success: function (data) {
+          console.log(data);
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/portfolio/" + section + "/", "");
