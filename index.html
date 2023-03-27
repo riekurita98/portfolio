@@ -357,13 +357,13 @@
   <script>
     var sections = ["fashion", "architecture", "food"];
     sections.forEach(section => {
-        $.ajax({
+      $.ajax({
         url : "./assets/img/portfolio/" + section,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        success: function (data) {
-          console.log("1");
+    beforeSend: function( xhr ) {
+        xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+    }
+}).done(function (data) {
+          // console.log(window.URL, "1");
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/portfolio/" + section + "/", "");
@@ -376,9 +376,8 @@
                     $(".portfolio-container").prepend(contents);
                 } 
             });
-          }
-      });  
-    });
+          })
+      });
 
     $.ajax({
         url : "/assets/img/blog",
@@ -398,6 +397,19 @@
             });
           }
       });  
+
+//       sections.forEach(section => {
+//       $.ajax({
+//         url : "./assets/img/portfolio/" + section,
+//     beforeSend: function( xhr ) {
+//         xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+//     }
+// }).done(function( data ) {
+//     if ( console && console.log ) {
+//         console.log( "Sample of data:", data.slice( 0, 100 ) );
+//     }
+// })
+//       });
       
   </script>
 
