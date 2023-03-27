@@ -358,9 +358,8 @@
     var sections = ["fashion", "architecture", "food"];
     sections.forEach(section => {
         $.ajax({
-        url : "/assets/img/portfolio/" + section,
+        url : "./assets/img/portfolio/" + section,
         success: function (data) {
-          console.log(data);
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/portfolio/" + section + "/", "");
@@ -378,16 +377,16 @@
     });
 
     $.ajax({
-        url : "/assets/img/blog",
+        url : "./assets/img/blog",
         success: function (data) {
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/blog/", "");
                     title = title.replace(".jpg", "");
                     var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
-                    // var date_splitted = date.substring(0, 4) + "." + date.substring(4, 6) + "." + date.substring(6, 8);
                     var desc = title.substring(8, title.length);
                     desc = desc.split("-").join(" ");
+
                     var blog_contents = "<div class='col-lg-4 col-md-6 journal-item'><div class='journal-info'><a href='blog-single.html?title=" + title + "'><img src='" + val + "' class='img-responsive' alt='img'></a><div class='journal-txt'><h4><a href='blog-single.html?title=" + title + "'>" + desc + "</a></h4><p class='separator'>" + date + "</p></div></div></div>";
                     $(".journal-container").prepend(blog_contents);
                 } 
