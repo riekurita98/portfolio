@@ -358,7 +358,7 @@
     var sections = ["fashion", "architecture", "food"];
     sections.forEach(section => {
         $.ajax({
-        url : "assets/img/portfolio/" + section,
+        url : "/assets/img/portfolio/" + section,
         success: function (data) {
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
@@ -377,7 +377,7 @@
     });
 
     $.ajax({
-        url : "assets/img/blog",
+        url : "/assets/img/blog",
         success: function (data) {
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
