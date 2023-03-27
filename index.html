@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -111,8 +113,12 @@
           <div class="col-lg-7">
             <div class="about-descr">
 
-              <p class="p-heading">im a software engineer tokyo/san francisco based who loves clean, simple & unique design. i also enjoy crafting ui/ux design and fashion design. </p>
-              <p class="separator">Software engineer experienced at Google, Kohl's, and Rakuten. Having graduated Carleton College as a Computer Science and Economics major, I also have an experience of starting a business, <a href="https://moovit2019.wordpress.com/">Moov-it!</a>, and have been performing on some musical theater stages.</p>
+              <p class="p-heading">im a software engineer tokyo/san francisco based who loves clean, simple & unique
+                design. i also enjoy crafting ui/ux design and fashion design. </p>
+              <p class="separator">Software engineer experienced at Google, Kohl's, and Rakuten. Having graduated
+                Carleton College as a Computer Science and Economics major, I also have an experience of starting a
+                business, <a href="https://moovit2019.wordpress.com/">Moov-it!</a>, and have been performing on some
+                musical theater stages.</p>
 
             </div>
 
@@ -120,7 +126,8 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>October 24 1998</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>riekurita98.github.io/rieslife/</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
+                    <span>riekurita98.github.io/rieslife/</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+1-612-424-2535</span></li>
                 </ul>
               </div>
@@ -128,7 +135,8 @@
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>24</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>San Francisco, USA</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>riekurita.dev@gmail.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>riekurita.dev@gmail.com</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -281,13 +289,15 @@
 
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                        required>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                        required>
                     </div>
                   </div>
 
@@ -336,7 +346,8 @@
     </div>
   </div><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -350,50 +361,54 @@
   <script type="module" src="assets/js/main.js"></script>
 
   <!-- Script to iterate through images -->
-	<!-- Jquery Library File -->
-	<script src="assets/js/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap js file -->
-	<script src="assets/js/bootstrap.min.js"></script>
+  <!-- Jquery Library File -->
+  <script src="assets/js/jquery-1.12.4.min.js"></script>
+  <!-- Bootstrap js file -->
+  <script src="assets/js/bootstrap.min.js"></script>
   <script>
     var sections = ["fashion", "architecture", "food"];
     sections.forEach(section => {
-        $.ajax({
-        url : "./assets/img/portfolio/" + section,
-        success: function (data) {
-            $(data).find("a").attr("href", function (i, val) {
-                if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                    var title = val.replace("/assets/img/portfolio/" + section + "/", "");
-                    title = title.replace(".jpg", "");
-                    var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
-                    var desc = title.substring(8, title.length);
-                    desc = desc.split("-").join(" ");
+      $.ajax({
+        url: "./assets/img/portfolio/" + section,
+        type: 'POST',
 
-                    var contents = "<div class='col-lg-4 col-md-6 portfolio-item filter-" + section + "'><img src='" + val + "' class='img-fluid' alt=''>  <div class='portfolio-info'><h4>" + desc + "</h4><p>" + date + "</p>  <a href='" + val + "' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='" + title + "'><i class='bx bx-plus'></i></a><a href='portfolio-details.html' class='details-link' title='More Details'><i class='bx bx-link'></i></a></div></div>";
-                    $(".portfolio-container").prepend(contents);
-                } 
-            });
-          }
-      });  
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+          $(data).find("a").attr("href", function (i, val) {
+            if (val.match(/\.(jpe?g|png|gif)$/)) {
+              var title = val.replace("/assets/img/portfolio/" + section + "/", "");
+              title = title.replace(".jpg", "");
+              var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
+              var desc = title.substring(8, title.length);
+              desc = desc.split("-").join(" ");
+
+              var contents = "<div class='col-lg-4 col-md-6 portfolio-item filter-" + section + "'><img src='" + val + "' class='img-fluid' alt=''>  <div class='portfolio-info'><h4>" + desc + "</h4><p>" + date + "</p>  <a href='" + val + "' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='" + title + "'><i class='bx bx-plus'></i></a><a href='portfolio-details.html' class='details-link' title='More Details'><i class='bx bx-link'></i></a></div></div>";
+              $(".portfolio-container").prepend(contents);
+            }
+          });
+        }
+      });
     });
 
     $.ajax({
-        url : "./assets/img/blog",
-        success: function (data) {
-            $(data).find("a").attr("href", function (i, val) {
-                if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                    var title = val.replace("/assets/img/blog/", "");
-                    title = title.replace(".jpg", "");
-                    var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
-                    var desc = title.substring(8, title.length);
-                    desc = desc.split("-").join(" ");
+      url: "./assets/img/blog",
+      success: function (data) {
+        $(data).find("a").attr("href", function (i, val) {
+          if (val.match(/\.(jpe?g|png|gif)$/)) {
+            var title = val.replace("/assets/img/blog/", "");
+            title = title.replace(".jpg", "");
+            var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
+            var desc = title.substring(8, title.length);
+            desc = desc.split("-").join(" ");
 
-                    var blog_contents = "<div class='col-lg-4 col-md-6 journal-item'><div class='journal-info'><a href='blog-single.html?title=" + title + "'><img src='" + val + "' class='img-responsive' alt='img'></a><div class='journal-txt'><h4><a href='blog-single.html?title=" + title + "'>" + desc + "</a></h4><p class='separator'>" + date + "</p></div></div></div>";
-                    $(".journal-container").prepend(blog_contents);
-                } 
-            });
+            var blog_contents = "<div class='col-lg-4 col-md-6 journal-item'><div class='journal-info'><a href='blog-single.html?title=" + title + "'><img src='" + val + "' class='img-responsive' alt='img'></a><div class='journal-txt'><h4><a href='blog-single.html?title=" + title + "'>" + desc + "</a></h4><p class='separator'>" + date + "</p></div></div></div>";
+            $(".journal-container").prepend(blog_contents);
           }
-      });  
-      
+        });
+      }
+    });
+
   </script>
 
 </body>
