@@ -359,8 +359,11 @@
     sections.forEach(section => {
         $.ajax({
         url : "./assets/img/portfolio/" + section,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
         success: function (data) {
-          console.log("1", data);
+          console.log("1");
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/portfolio/" + section + "/", "");
@@ -380,7 +383,7 @@
     $.ajax({
         url : "/assets/img/blog",
         success: function (data) {
-          console.log("2", data);
+          console.log("2");
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/blog/", "");
