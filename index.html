@@ -357,13 +357,9 @@
   <script>
     var sections = ["fashion", "architecture", "food"];
     sections.forEach(section => {
-      $.ajax({
-        url : "./blob/master/assets/img/portfolio/" + section,
-    beforeSend: function( xhr ) {
-        xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-    }
-}).done(function (data) {
-          // console.log(window.URL, "1");
+        $.ajax({
+        url : "./assets/img/portfolio/" + section + "/",
+        success: function (data) {
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/portfolio/" + section + "/", "");
@@ -376,13 +372,13 @@
                     $(".portfolio-container").prepend(contents);
                 } 
             });
-          })
-      });
+          }
+      });  
+    });
 
     $.ajax({
         url : "/assets/img/blog",
         success: function (data) {
-          console.log("2");
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
                     var title = val.replace("/assets/img/blog/", "");
@@ -397,19 +393,6 @@
             });
           }
       });  
-
-//       sections.forEach(section => {
-//       $.ajax({
-//         url : "./assets/img/portfolio/" + section,
-//     beforeSend: function( xhr ) {
-//         xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-//     }
-// }).done(function( data ) {
-//     if ( console && console.log ) {
-//         console.log( "Sample of data:", data.slice( 0, 100 ) );
-//     }
-// })
-//       });
       
   </script>
 
