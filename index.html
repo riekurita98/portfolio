@@ -355,43 +355,44 @@
 	<!-- Bootstrap js file -->
 	<script src="assets/js/bootstrap.min.js"></script>
   <script>
-    // var sections = ["fashion", "architecture", "food"];
-    // sections.forEach(section => {
-    //     $.ajax({
-    //     url : "./assets/img/portfolio/" + section,
-    //     success: function (data) {
-    //         $(data).find("a").attr("href", function (i, val) {
-    //             if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-    //                 var title = val.replace("/assets/img/portfolio/" + section + "/", "");
-    //                 title = title.replace(".jpg", "");
-    //                 var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
-    //                 var desc = title.substring(8, title.length);
-    //                 desc = desc.split("-").join(" ");
+    var sections = ["fashion", "architecture", "food"];
+    sections.forEach(section => {
+        $.ajax({
+        url : "/assets/img/portfolio/" + section,
+        success: function (data) {
+            $(data).find("a").attr("href", function (i, val) {
+                if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+                    var title = val.replace("/assets/img/portfolio/" + section + "/", "");
+                    title = title.replace(".jpg", "");
+                    var date = title.substring(0, 4) + "." + title.substring(4, 6) + "." + title.substring(6, 8);
+                    var desc = title.substring(8, title.length);
+                    desc = desc.split("-").join(" ");
 
-    //                 var contents = "<div class='col-lg-4 col-md-6 portfolio-item filter-" + section + "'><img src='" + val + "' class='img-fluid' alt=''>  <div class='portfolio-info'><h4>" + desc + "</h4><p>" + date + "</p>  <a href='" + val + "' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='" + title + "'><i class='bx bx-plus'></i></a><a href='portfolio-details.html' class='details-link' title='More Details'><i class='bx bx-link'></i></a></div></div>";
-    //                 $(".portfolio-container").prepend(contents);
-    //             } 
-    //         });
-    //       }
-    //   });  
-    // });
+                    var contents = "<div class='col-lg-4 col-md-6 portfolio-item filter-" + section + "'><img src='" + val + "' class='img-fluid' alt=''>  <div class='portfolio-info'><h4>" + desc + "</h4><p>" + date + "</p>  <a href='" + val + "' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='" + title + "'><i class='bx bx-plus'></i></a><a href='portfolio-details.html' class='details-link' title='More Details'><i class='bx bx-link'></i></a></div></div>";
+                    $(".portfolio-container").prepend(contents);
+                } 
+            });
+          }
+      });  
+    });
 
-    var pdfFilesDirectory = '/assets/img/portfolio/fashion/';
+//     var pdfFilesDirectory = 'https://riekurita98.github.io/portfolio/assets/img/';
+//     // https://github.com/riekurita98/portfolio/blob/master/assets/img/portfolio/fashion/20230318Pattern-Dress.jpg
 
-// get auto-generated page 
-$.ajax({url: pdfFilesDirectory}).then(function(html) {
-    // create temporary DOM element
-    var document = $(html);
+// // get auto-generated page 
+// $.ajax({url: pdfFilesDirectory}).then(function(html) {
+//     // create temporary DOM element
+//     var document = $(html);
 
-    // find all links ending with .pdf 
-    document.find('a[href$=".jpg"]').each(function() {
-        var pdfName = $(this).text();
-        var pdfUrl = $(this).attr('href');
-        console.log(pdfName, pdfUrl);
+//     // find all links ending with .pdf 
+//     document.find('a[href$=".jpg"]').each(function() {
+//         var pdfName = $(this).text();
+//         var pdfUrl = $(this).attr('href');
+//         console.log(pdfName, pdfUrl);
 
-        // do what you want here 
-    })
-});
+//         // do what you want here 
+//     })
+// });
   </script>
 
 </body>
